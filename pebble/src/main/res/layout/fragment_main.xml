@@ -11,8 +11,23 @@
     tools:context=".MainActivityFragment">
 
     <TextView
+        android:id="@+id/pebble_status"
         android:text="Hello World!"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/notification_button"
+        android:layout_below="@id/pebble_status"
+        android:text="@string/button_start_sports_watchapp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/launch_button"
+        android:layout_below="@id/notification_button"
+        android:text="@string/button_start_sports_watchapp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

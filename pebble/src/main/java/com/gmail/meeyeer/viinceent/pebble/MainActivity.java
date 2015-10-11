@@ -1,15 +1,34 @@
 package com.gmail.meeyeer.viinceent.pebble;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.CharacterPickerDialog;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.getpebble.android.kit.Constants;
+import com.getpebble.android.kit.PebbleKit;
+import com.getpebble.android.kit.util.PebbleDictionary;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private Handler mHandler = new Handler();
+    private PebbleKit.PebbleDataReceiver mReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +45,81 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Button notificationButton = (Button)findViewById(R.id.notification_button);
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pushPebbleNotification();
+            }
+        });
+
+        Button launchButton = (Button)findViewById(R.id.launch_button);
+        launchButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+
+                boolean isConnected = PebbleKit.isWatchConnected(context);
+
+                if(isConnected) {
+                    // Launch the sports app
+                    PebbleKit.startAppOnPebble(context, Constants.SPORTS_UUID);
+
+                    Toast.makeText(context, R.string.dialog_launching, Toast.LENGTH_SHORT).show();
+
+                    // Send data 5s after launch
+                    mHandler.postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // Send a time and distance to the sports app
+                            PebbleDictionary outgoing = new PebbleDictionary();
+                            outgoing.addString(Constants.SPORTS_TIME_KEY, "12:52");
+                            outgoing.addString(Constants.SPORTS_DISTANCE_KEY, "23.8");
+                            outgoing.addUint8(Constants.SPORTS_UNITS_KEY, (byte) Constants.SPORTS_UNITS_METRIC);
+                            outgoing.addUint8(Constants.SPORTS_LABEL_KEY, (byte) Constants.SPORTS_DATA_SPEED);
+                            // outgoing.addUint8(Constants.SPORTS_LABEL_KEY, (byte) Constants.SPORTS_DATA_PACE);
+                            outgoing.addString(Constants.SPORTS_DATA_KEY, "6.28");
+                            PebbleKit.sendDataToPebble(getApplicationContext(), Constants.SPORTS_UUID, outgoing);
+                        }
+
+                    }, 5000L);
+
+                } else {
+                    Toast.makeText(context, R.string.dialog_not_connected, Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Get information back from the watchapp
+        if(mReceiver == null) {
+            mReceiver = new PebbleKit.PebbleDataReceiver(Constants.SPORTS_UUID) {
+
+                @Override
+                public void receiveData(Context context, int id, PebbleDictionary data) {
+                    // Always ACKnowledge the last message to prevent timeouts
+                    PebbleKit.sendAckToPebble(getApplicationContext(), id);
+
+                    // Get action and display
+                    int state = data.getUnsignedIntegerAsLong(Constants.SPORTS_STATE_KEY).intValue();
+                    Toast.makeText(getApplicationContext(),
+                            (state == Constants.SPORTS_STATE_PAUSED ? "Resumed!" : "Paused!"), Toast.LENGTH_SHORT).show();
+                }
+
+            };
+        }
+
+        // Register the receiver to get data
+        PebbleKit.registerReceivedDataHandler(this, mReceiver);
+
+        getPebbleStatus();
     }
 
     @Override
@@ -48,5 +142,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getPebbleStatus() {
+        StringBuilder builder = new StringBuilder();
+        boolean isConnected = PebbleKit.isWatchConnected(this);
+        boolean isAppMessageSupported = PebbleKit.areAppMessagesSupported(this);
+        PebbleKit.FirmwareVersionInfo info = PebbleKit.getWatchFWVersion(this);
+
+        builder.append("Pebble Info\n\n")
+                .append(String.format("Watch is%s connected.\n", isConnected ?
+                        "" : " not"))
+                .append(String.format("AppMessage is%s supported.\n", isAppMessageSupported ?
+                        "" : " not"))
+                .append(String.format("Firmware version: %s.%s.\n",
+                        info.getMajor(), info.getMinor()));
+        
+        TextView textView = (TextView)findViewById(R.id.pebble_status);
+        textView.setText(builder.toString());
+    }
+
+    public void pushPebbleNotification() {
+        final Intent i = new Intent("com.getpebble.action.SEND_NOTIFICATION");
+        final Map<String, String> data = new HashMap<>();
+        data.put("title", "Test message");
+        data.put("body", "Whoever said nothing was impossible never tried to slam a revolving door.");
+        final JSONObject jsonData = new JSONObject(data);
+        final String notificationData = new JSONArray().put(jsonData).toString();
+
+        i.putExtra("messageType", "PEBBLE_ALERT");
+        i.putExtra("sender", "PebbleKit Android");
+        i.putExtra("notificationData", notificationData);
+        sendBroadcast(i);
     }
 }

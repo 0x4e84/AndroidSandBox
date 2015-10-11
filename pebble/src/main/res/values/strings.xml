@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Pebble</string>
     <string name="action_settings">Settings</string>
+
+    <string name="button_start_sports_watchapp">Launch Sports Watchapp</string>
+    <string name="button_send_notification">Send a notification</string>
+
+    <string name="dialog_launching">Launching…</string>
+    <string name="dialog_not_connected">Watch is not connected!</string>
 </resources>
