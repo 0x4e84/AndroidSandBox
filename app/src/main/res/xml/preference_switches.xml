@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="com.gmail.meeyeer.viinceent.androidsandbox.preference_category"
+        android:title="@string/settings_title">
+        <SwitchPreference
+            android:key="com.gmail.meeyeer.viinceent.androidsandbox.preference_switch1"
+            android:title="@string/settings_switch1"
+            android:background="#004e84"
+            android:defaultValue="false"
+            android:summaryOff="@string/settings_off"
+            android:summaryOn="@string/settings_on"
+            android:switchTextOff="@string/OFF"
+            android:switchTextOn="@string/ON"/>
+        <SwitchPreference
+            android:key="com.gmail.meeyeer.viinceent.androidsandbox.preference_switch2"
+            android:title="@string/settings_switch2"
+            android:background="#004e84"
+            android:defaultValue="true"
+            android:summaryOff="@string/settings_off"
+            android:summaryOn="@string/settings_on"
+            android:switchTextOff="@string/OFF"
+            android:switchTextOn="@string/ON"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

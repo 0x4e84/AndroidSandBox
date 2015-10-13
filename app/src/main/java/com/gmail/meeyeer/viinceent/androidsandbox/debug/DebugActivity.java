@@ -1,7 +1,9 @@
 package com.gmail.meeyeer.viinceent.androidsandbox.debug;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.gmail.meeyeer.viinceent.androidsandbox.BuildConfig;
+import com.gmail.meeyeer.viinceent.androidsandbox.PreferencesFragment;
 import com.gmail.meeyeer.viinceent.androidsandbox.R;
+import com.gmail.meeyeer.viinceent.androidsandbox.SettingsActivity;
 
 public class DebugActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -71,6 +75,13 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.button_debug:
                 Log.d(TAG, "Debug test button has been pressed!");
+
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                settingsIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                        PreferencesFragment.class.getName());
+                settingsIntent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS, true);
+                startActivity(settingsIntent);
+
                 break;
             case R.id.button_snackbar:
                 Snackbar snackbar;
