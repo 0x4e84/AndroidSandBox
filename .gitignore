@@ -5,3 +5,7 @@
 .DS_Store
 /build
 azure_mobile_services/src/main/res/values/mobile_services.xml
+.idea/
+*.iml
+gradle.properties
+gradle/wrapper/gradle-wrapper.properties

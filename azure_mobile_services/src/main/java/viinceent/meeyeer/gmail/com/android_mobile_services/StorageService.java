@@ -56,16 +56,14 @@ public class StorageService {
     public StorageService(Context context) {
         Log.d(TAG, "Entering StorageService");
         mContext = context;
-        try {
-//            String url = context.getString(R.string.service_sandbox_url);
-//            String key = context.getString(R.string.service_sandbox_key);
-            String url = context.getString(R.string.service_url);
-            String key = context.getString(R.string.service_key);
-            String tables = context.getString(R.string.service_tables);
-            String rows = context.getString(R.string.service_rows);
-            String containers = context.getString(R.string.service_containers);
-            String blobs = context.getString(R.string.service_blobs);
+        String url = context.getString(R.string.service_url);
+        String key = context.getString(R.string.service_application_key);
+        String tables = context.getString(R.string.service_tables);
+        String rows = context.getString(R.string.service_rows);
+        String containers = context.getString(R.string.service_containers);
+        String blobs = context.getString(R.string.service_blobs);
 
+        try {
             MobileServiceClient mClient = new MobileServiceClient(url, key, mContext);
             mTableTables = mClient.getTable(tables);
             mTableTableRows = mClient.getTable(rows);
@@ -572,9 +570,8 @@ public class StorageService {
     /**
      * Gets a SAS URL for a new blob so we can upload it to the server
      *
-     * @param containerName -
-     * @param blobName      NOTE THIS IS DONE AS A SEPARATE METHOD FROM getSasForNewBlob BECAUSE IT
-     *                      BROADCASTS A DIFFERENT ACTION
+     * @param containerName Container name
+     * @param blobName Blob name
      */
     public void getSasForNewBlob(String containerName, String blobName) {
         Log.d(TAG, "Entering getSasForNewBlob");

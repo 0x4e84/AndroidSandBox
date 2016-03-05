@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TablesActivity extends ListActivity {
+    private static final String TAG = TablesActivity.class.getSimpleName();
+
     private Context mContext;
     /**
      * This broadcast receiver handles showing the tables after they've been

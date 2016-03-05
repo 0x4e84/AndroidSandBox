@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,6 +45,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ContainersActivity extends ListActivity {
+    private static final String TAG = ContainersActivity.class.getSimpleName();
+
     private Context mContext;
     /**
      * This broadcast receiver handles things after the containers have been loaded
@@ -108,6 +111,7 @@ public class ContainersActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate()");
         // Show the Up button in the action bar.
         setupActionBar();
         //Get access to the storage service
