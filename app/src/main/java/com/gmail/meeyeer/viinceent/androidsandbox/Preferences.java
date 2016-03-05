@@ -15,14 +15,12 @@ public class Preferences {
     private boolean isSwitch1Enabled;
     private boolean isSwitch2Enabled;
 
-    private static SharedPreferences sharedPreferences = null;
-
     private Preferences() {
         String preferencesName = String.format("%s.%s",
                 PREFERENCE_KEY,
                 context.getString(R.string.app_name));
 
-        sharedPreferences = context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
         if (sharedPreferences == null) return;
 
         isSwitch1Enabled = sharedPreferences.getBoolean(PREFERENCE_SWITCH1, true);

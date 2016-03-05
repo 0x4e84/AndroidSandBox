@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.getpebble.android.kit.Constants;
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
@@ -23,6 +22,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.getpebble.android.kit.Constants.*;
 
 public class MainActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isConnected) {
                     // Launch the sports app
-                    PebbleKit.startAppOnPebble(context, Constants.SPORTS_UUID);
+                    PebbleKit.startAppOnPebble(context, SPORTS_UUID);
 
                     Toast.makeText(context, R.string.dialog_launching, Toast.LENGTH_SHORT).show();
 
@@ -72,13 +73,16 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             // Send a time and distance to the sports app
                             PebbleDictionary outgoing = new PebbleDictionary();
-                            outgoing.addString(Constants.SPORTS_TIME_KEY, "12:52");
-                            outgoing.addString(Constants.SPORTS_DISTANCE_KEY, "23.8");
-                            outgoing.addUint8(Constants.SPORTS_UNITS_KEY, (byte) Constants.SPORTS_UNITS_METRIC);
-                            outgoing.addUint8(Constants.SPORTS_LABEL_KEY, (byte) Constants.SPORTS_DATA_SPEED);
-                            // outgoing.addUint8(Constants.SPORTS_LABEL_KEY, (byte) Constants.SPORTS_DATA_PACE);
-                            outgoing.addString(Constants.SPORTS_DATA_KEY, "6.28");
-                            PebbleKit.sendDataToPebble(getApplicationContext(), Constants.SPORTS_UUID, outgoing);
+                            outgoing.addString(SPORTS_TIME_KEY, "12:52");
+                            outgoing.addString(SPORTS_DISTANCE_KEY, "23.8");
+                            outgoing.addUint8(SPORTS_UNITS_KEY,
+                                    (byte) SPORTS_UNITS_METRIC);
+                            outgoing.addUint8(SPORTS_LABEL_KEY,
+                                    (byte) SPORTS_DATA_SPEED);
+                            // outgoing.addUint8(SPORTS_LABEL_KEY, (byte) SPORTS_DATA_PACE);
+                            outgoing.addString(SPORTS_DATA_KEY, "6.28");
+                            PebbleKit.sendDataToPebble(getApplicationContext(),
+                                    SPORTS_UUID, outgoing);
                         }
 
                     }, 5000L);
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         // Get information back from the watchapp
         if(mReceiver == null) {
-            mReceiver = new PebbleKit.PebbleDataReceiver(Constants.SPORTS_UUID) {
+            mReceiver = new PebbleKit.PebbleDataReceiver(SPORTS_UUID) {
 
                 @Override
                 public void receiveData(Context context, int id, PebbleDictionary data) {
@@ -104,9 +108,10 @@ public class MainActivity extends AppCompatActivity {
                     PebbleKit.sendAckToPebble(getApplicationContext(), id);
 
                     // Get action and display
-                    int state = data.getUnsignedIntegerAsLong(Constants.SPORTS_STATE_KEY).intValue();
+                    int state = data.getUnsignedIntegerAsLong(SPORTS_STATE_KEY).intValue();
                     Toast.makeText(getApplicationContext(),
-                            (state == Constants.SPORTS_STATE_PAUSED ? "Resumed!" : "Paused!"), Toast.LENGTH_SHORT).show();
+                            ((state == SPORTS_STATE_PAUSED) ? "Resumed!" : "Paused!"),
+                            Toast.LENGTH_SHORT).show();
                 }
 
             };
