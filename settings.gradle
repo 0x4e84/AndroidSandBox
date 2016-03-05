@@ -1,1 +1,1 @@
-include ':app', ':pebble'
+include ':app', ':pebble', ':wear', ':cppapp'

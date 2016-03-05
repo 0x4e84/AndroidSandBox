@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         "" : " not"))
                 .append(String.format("Firmware version: %s.%s.\n",
                         info.getMajor(), info.getMinor()));
-        
+
         TextView textView = (TextView)findViewById(R.id.pebble_status);
         textView.setText(builder.toString());
     }
