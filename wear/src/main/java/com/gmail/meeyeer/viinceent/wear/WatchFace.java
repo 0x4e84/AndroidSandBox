@@ -91,7 +91,7 @@ public class WatchFace extends CanvasWatchFaceService {
                     .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
-                    .setAcceptsTapEvents(true)
+//                    .setAcceptsTapEvents(true)
                     .build());
 
             Resources resources = WatchFace.this.getResources();
@@ -146,25 +146,25 @@ public class WatchFace extends CanvasWatchFaceService {
          * Captures tap event (and tap type) and toggles the background color if the user finishes
          * a tap.
          */
-        @Override
-        public void onTapCommand(int tapType, int x, int y, long eventTime) {
-            Resources resources = WatchFace.this.getResources();
-            switch (tapType) {
-                case TAP_TYPE_TOUCH:
-                    // The user has started touching the screen.
-                    break;
-                case TAP_TYPE_TOUCH_CANCEL:
-                    // The user has started a different gesture or otherwise cancelled the tap.
-                    break;
-                case TAP_TYPE_TAP:
-                    // The user has completed the tap gesture.
-                    mTapCount++;
-                    mBackgroundPaint.setColor(resources.getColor(mTapCount % 2 == 0 ?
-                            R.color.background : R.color.background2));
-                    break;
-            }
-            invalidate();
-        }
+//        @Override
+//        public void onTapCommand(int tapType, int x, int y, long eventTime) {
+//            Resources resources = WatchFace.this.getResources();
+//            switch (tapType) {
+//                case TAP_TYPE_TOUCH:
+//                    // The user has started touching the screen.
+//                    break;
+//                case TAP_TYPE_TOUCH_CANCEL:
+//                    // The user has started a different gesture or otherwise cancelled the tap.
+//                    break;
+//                case TAP_TYPE_TAP:
+//                    // The user has completed the tap gesture.
+//                    mTapCount++;
+//                    mBackgroundPaint.setColor(resources.getColor(mTapCount % 2 == 0 ?
+//                            R.color.background : R.color.background2));
+//                    break;
+//            }
+//            invalidate();
+//        }
 
         @Override
         public void onDraw(Canvas canvas, Rect bounds) {
