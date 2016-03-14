@@ -9,3 +9,4 @@ azure_mobile_services/src/main/res/values/mobile_services.xml
 *.iml
 gradle.properties
 gradle/wrapper/gradle-wrapper.properties
+*.jar
