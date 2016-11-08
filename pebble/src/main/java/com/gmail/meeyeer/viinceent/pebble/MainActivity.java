@@ -35,64 +35,70 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+        }
 
         Button notificationButton = (Button)findViewById(R.id.notification_button);
-        notificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pushPebbleNotification();
-            }
-        });
-
-        Button launchButton = (Button)findViewById(R.id.launch_button);
-        launchButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Context context = getApplicationContext();
-
-                boolean isConnected = PebbleKit.isWatchConnected(context);
-
-                if(isConnected) {
-                    // Launch the sports app
-                    PebbleKit.startAppOnPebble(context, SPORTS_UUID);
-
-                    Toast.makeText(context, R.string.dialog_launching, Toast.LENGTH_SHORT).show();
-
-                    // Send data 5s after launch
-                    mHandler.postDelayed(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            // Send a time and distance to the sports app
-                            PebbleDictionary outgoing = new PebbleDictionary();
-                            outgoing.addString(SPORTS_TIME_KEY, "12:52");
-                            outgoing.addString(SPORTS_DISTANCE_KEY, "23.8");
-                            outgoing.addUint8(SPORTS_UNITS_KEY,
-                                    (byte) SPORTS_UNITS_METRIC);
-                            outgoing.addUint8(SPORTS_LABEL_KEY,
-                                    (byte) SPORTS_DATA_SPEED);
-                            // outgoing.addUint8(SPORTS_LABEL_KEY, (byte) SPORTS_DATA_PACE);
-                            outgoing.addString(SPORTS_DATA_KEY, "6.28");
-                            PebbleKit.sendDataToPebble(getApplicationContext(),
-                                    SPORTS_UUID, outgoing);
-                        }
-
-                    }, 5000L);
-
-                } else {
-                    Toast.makeText(context, R.string.dialog_not_connected, Toast.LENGTH_LONG).show();
+        if (notificationButton != null) {
+            notificationButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pushPebbleNotification();
                 }
-            }
+            });
+        }
 
-        });
+        Button launchButton = (Button)findViewById(R.id.launch_sport_button);
+        if (launchButton != null) {
+            launchButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Context context = getApplicationContext();
+
+                    boolean isConnected = PebbleKit.isWatchConnected(context);
+
+                    if(isConnected) {
+                        // Launch the sports app
+                        PebbleKit.startAppOnPebble(context, SPORTS_UUID);
+
+                        Toast.makeText(context, R.string.dialog_launching, Toast.LENGTH_SHORT).show();
+
+                        // Send data 5s after launch
+                        mHandler.postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                // Send a time and distance to the sports app
+                                PebbleDictionary outgoing = new PebbleDictionary();
+                                outgoing.addString(SPORTS_TIME_KEY, "12:52");
+                                outgoing.addString(SPORTS_DISTANCE_KEY, "23.8");
+                                outgoing.addUint8(SPORTS_UNITS_KEY,
+                                        (byte) SPORTS_UNITS_METRIC);
+                                outgoing.addUint8(SPORTS_LABEL_KEY,
+                                        (byte) SPORTS_DATA_SPEED);
+                                // outgoing.addUint8(SPORTS_LABEL_KEY, (byte) SPORTS_DATA_PACE);
+                                outgoing.addString(SPORTS_DATA_KEY, "6.28");
+                                PebbleKit.sendDataToPebble(getApplicationContext(),
+                                        SPORTS_UUID, outgoing);
+                            }
+
+                        }, 5000L);
+
+                    } else {
+                        Toast.makeText(context, R.string.dialog_not_connected, Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            });
+        }
     }
 
     @Override
@@ -160,7 +166,9 @@ public class MainActivity extends AppCompatActivity {
                         info.getMajor(), info.getMinor()));
 
         TextView textView = (TextView)findViewById(R.id.pebble_status);
-        textView.setText(builder.toString());
+        if (textView != null) {
+            textView.setText(builder.toString());
+        }
     }
 
     public void pushPebbleNotification() {
