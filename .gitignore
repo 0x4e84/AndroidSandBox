@@ -10,3 +10,4 @@ azure_mobile_services/src/main/res/values/mobile_services.xml
 gradle.properties
 gradle/wrapper/gradle-wrapper.properties
 *.jar
+kotlin/out/
