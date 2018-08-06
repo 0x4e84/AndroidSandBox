@@ -1,26 +1,40 @@
 apply plugin: 'com.android.application'
 
+final BUILD_DATE = new Date().format('yyyyMMdd')
+
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    compileSdkVersion    rootProject.ext.compile_sdk_version
+    buildToolsVersion    rootProject.ext.build_tools_version
 
     defaultConfig {
+        minSdkVersion    rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
         applicationId "com.gmail.meeyeer.viinceent.cppapp"
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner Libs.x_test_runner
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    testImplementation Libs.junit
+    testImplementation Libs.hamcrest
+    testImplementation Libs.support_test_runner
+
+    implementation Libs.support_appcompat_v7
 }
