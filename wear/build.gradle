@@ -4,7 +4,6 @@ final BUILD_DATE = new Date().format('yyyyMMdd')
 
 android {
     compileSdkVersion    rootProject.ext.compile_sdk_version
-    buildToolsVersion    rootProject.ext.build_tools_version
 
     defaultConfig {
         minSdkVersion    23
@@ -12,7 +11,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.wear"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.x_test_runner
+        testInstrumentationRunner Libs.test_runner
     }
     buildTypes {
         debug {
@@ -32,13 +31,12 @@ android {
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
-
     compileOnly Libs.wearable
+
+    implementation Libs.gms_wearable
     implementation Libs.support_wear
     implementation Libs.support_wearable
-//    implementation Libs.gms_wearable
-//    compile 'com.google.android.support:wearable:2.1.0'
-//    provided 'com.google.android.wearable:wearable:2.1.0'
-//    compile 'com.google.android.gms:play-services-wearable:11.6.2'
+    implementation Libs.x_legacy_support_v4
+    implementation Libs.x_percent_layout
+    implementation Libs.x_recyclerview
 }

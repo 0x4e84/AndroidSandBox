@@ -4,7 +4,6 @@ final BUILD_DATE = new Date().format('yyyyMMdd')
 
 android {
     compileSdkVersion    rootProject.ext.compile_sdk_version
-    buildToolsVersion    rootProject.ext.build_tools_version
 
     defaultConfig {
         minSdkVersion    rootProject.ext.min_sdk_version
@@ -12,7 +11,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.pebble"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.x_test_runner
+        testInstrumentationRunner Libs.test_runner
     }
     buildTypes {
         debug {
@@ -32,10 +31,6 @@ android {
 }
 
 dependencies {
-//    compile 'com.getpebble:pebblekit:4.0.0'
-//    compile 'com.android.support:appcompat-v7:27.0.2'
-//    compile 'com.android.support:support-v4:27.0.2'
-//    compile 'com.android.support:design:27.0.2'
     implementation Libs.pebble_kit
     implementation Libs.support_appcompat_v7
     implementation Libs.support_design

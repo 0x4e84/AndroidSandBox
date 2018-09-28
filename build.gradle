@@ -3,7 +3,6 @@ ext {
     min_sdk_version = 19
     target_sdk_version = 28
     compile_sdk_version = 28
-    build_tools_version = '28.0.1'
 }
 
 buildscript {
@@ -11,6 +10,7 @@ buildscript {
         google()
         jcenter()
     }
+
     dependencies {
         classpath Libs.gradle_build_tools
         classpath Libs.kotlin_plugin
@@ -24,6 +24,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

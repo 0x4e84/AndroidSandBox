@@ -12,7 +12,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.cppapp"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.x_test_runner
+        testInstrumentationRunner Libs.test_runner
     }
     buildTypes {
         debug {
@@ -32,9 +32,7 @@ android {
 }
 
 dependencies {
-    testImplementation Libs.junit
-    testImplementation Libs.hamcrest
-    testImplementation Libs.support_test_runner
+    testImplementation Libs.junit_jupiter_api
 
     implementation Libs.support_appcompat_v7
 }
