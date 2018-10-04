@@ -24,6 +24,8 @@ object Versions {
 
     // Google                         
     const val gms                     = "16.0.0"         // https://mvnrepository.com/artifact/com.google.android.gms
+    const val gms_auth                = "16.0.0"         // https://mvnrepository.com/artifact/com.google.android.gms
+    const val gms_drive               = "15.0.1"         // https://mvnrepository.com/artifact/com.google.android.gms
     const val gson                    = "2.8.5"          // https://mvnrepository.com/artifact/com.google.code.gson
     const val material                = "1.0.0"          // https://mvnrepository.com/artifact/com.google.android.material
     const val wearable                = "2.3.0"          // https://mvnrepository.com/artifact/com.google.android.support/wearable
@@ -89,6 +91,8 @@ object Libs {
 
     // Google
     const val gms_wearable            = "com.google.android.gms:play-services-wearable:${Versions.gms}"
+    const val google_auth             = "com.google.android.gms:play-services-auth:${Versions.gms_auth}"
+    const val google_drive            = "com.google.android.gms:play-services-drive:${Versions.gms_drive}"
     const val material                = "com.google.android.material:material:${Versions.material}"
     const val support_wearable        = "com.google.android.support:wearable:${Versions.wearable}"
     const val wearable                = "com.google.android.wearable:wearable:${Versions.wearable}"

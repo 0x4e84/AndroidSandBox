@@ -11,7 +11,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.wear"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.test_runner
+        testInstrumentationRunner Libs.junit_runner
     }
     buildTypes {
         debug {

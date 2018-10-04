@@ -4,7 +4,6 @@ final BUILD_DATE = new Date().format('yyyyMMdd')
 
 android {
     compileSdkVersion    rootProject.ext.compile_sdk_version
-    buildToolsVersion    rootProject.ext.build_tools_version
 
     defaultConfig {
         minSdkVersion    rootProject.ext.min_sdk_version
@@ -12,7 +11,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.cppapp"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.test_runner
+        testInstrumentationRunner Libs.junit_runner
     }
     buildTypes {
         debug {
