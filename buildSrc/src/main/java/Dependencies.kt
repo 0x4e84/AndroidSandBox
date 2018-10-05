@@ -68,11 +68,13 @@ object Libs {
     const val support_compat          = "com.android.support:support-compat:${Versions.support}"
     const val support_design          = "com.android.support:design:${Versions.support}"
     const val support_espresso        = "com.android.support.test.support_espresso:support_espresso-core:${Versions.support_test_espresso}"
+    const val support_palette_v7      = "com.android.support:palette-v7:${Versions.support}"
     const val support_preference_v7   = "com.android.support:preference-v7:${Versions.support}"
     const val support_preference_v14  = "com.android.support:preference-v14:${Versions.support}"
     const val support_recyclerview_v7 = "com.android.support:recyclerview-v7:${Versions.support}"
     const val support_test_rules      = "com.android.support.test:rules:${Versions.support_test}"
     const val support_test_runner     = "com.android.support.test:runner:${Versions.support_test}"
+    const val support_v4              = "com.android.support:support-v4:${Versions.support}"
     const val support_wear            = "com.android.support:wear:${Versions.support}"
 
     // AndroidX

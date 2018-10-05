@@ -12,6 +12,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner Libs.junit_runner
+        multiDexEnabled true
     }
     buildTypes {
         debug {
@@ -31,12 +32,8 @@ android {
 }
 
 dependencies {
-    compileOnly Libs.wearable
-
     implementation Libs.gms_wearable
-    implementation Libs.support_wear
+    implementation Libs.support_palette_v7
+    implementation Libs.support_v4
     implementation Libs.support_wearable
-    implementation Libs.x_legacy_support_v4
-    implementation Libs.x_percent_layout
-    implementation Libs.x_recyclerview
 }
