@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation Libs.gms_wearable
+    implementation Libs.play_services_wearable
     implementation Libs.support_palette_v7
     implementation Libs.support_v4
     implementation Libs.support_wearable
