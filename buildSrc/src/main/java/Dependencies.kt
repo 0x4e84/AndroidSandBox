@@ -14,6 +14,7 @@ object Versions {
     // AndroidX                       
     const val x_appcompat             = "1.0.0"          // https://mvnrepository.com/artifact/androidx.appcompat
     const val x_constraintlayout      = "2.0.0-alpha2"   // https://mvnrepository.com/artifact/androidx.constraintlayout
+    const val x_core_ktx              = "1.0.1"          // https://mvnrepository.com/artifact/androidx.core/core-ktx
     const val x_legacy                = "1.0.0"          // https://mvnrepository.com/artifact/androidx.legacy
     const val x_lifecycle             = "2.0.0"          // https://mvnrepository.com/artifact/androidx.lifecycle
     const val x_percentlayout         = "1.0.0"          // https://mvnrepository.com/artifact/androidx.percentlayout
@@ -85,6 +86,7 @@ object Libs {
     // AndroidX
     const val x_appcompat             = "androidx.appcompat:appcompat:${Versions.x_appcompat}"
     const val x_cardview              = "androidx.cardview:cardview:${Versions.x_appcompat}"
+    const val x_core_ktx              = "androidx.core:core-ktx:${Versions.x_core_ktx}"
     const val x_constraint_layout     = "androidx.constraintlayout:constraintlayout:${Versions.x_constraintlayout}"
     const val x_espresso              = "androidx.test.support_espresso:support_espresso-core:${Versions.x_test_espresso}"
     const val x_legacy_support_v4     = "androidx.legacy:legacy-support-v4:${Versions.x_legacy}"
