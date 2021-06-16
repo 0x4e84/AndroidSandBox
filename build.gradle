@@ -1,26 +1,33 @@
 ext {
     // Sdk and tools
     min_sdk_version = 19
-    target_sdk_version = 28
-    compile_sdk_version = 28
+    target_sdk_version = 30
+    compile_sdk_version = 30
 }
 
 buildscript {
+    ext {
+        compose_version = '1.0.0-beta08'
+    }
+    ext.kotlin_version = '1.5.10'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 
     dependencies {
         classpath Libs.gradle_build_tools
-        classpath Libs.kotlin_plugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
-        jcenter()
+        mavenCentral()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
 }
 

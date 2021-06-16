@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 final BUILD_DATE = new Date().format('yyyyMMdd')
 
 android {
     compileSdkVersion    rootProject.ext.compile_sdk_version
+    buildFeatures.viewBinding true
 
     defaultConfig {
         minSdkVersion    23
@@ -11,7 +13,7 @@ android {
         applicationId "com.gmail.meeyeer.viinceent.wear"
         versionName "1.0"
 
-        testInstrumentationRunner Libs.junit_runner
+        testInstrumentationRunner Libs.x_junit_runner
         multiDexEnabled true
     }
     buildTypes {
@@ -32,8 +34,9 @@ android {
 }
 
 dependencies {
-    implementation Libs.play_services_wearable
+    implementation Libs.gms_services_wearable
+    implementation Libs.x_wear
     implementation Libs.support_palette_v7
-    implementation Libs.support_v4
-    implementation Libs.support_wearable
+    implementation Libs.wearable_support
+//    implementation Libs.support_v4
 }

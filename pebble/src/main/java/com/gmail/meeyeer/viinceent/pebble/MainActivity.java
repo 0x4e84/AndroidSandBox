@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -15,6 +12,8 @@ import android.widget.Toast;
 
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,8 +32,10 @@ import static com.getpebble.android.kit.Constants.SPORTS_UNITS_KEY;
 import static com.getpebble.android.kit.Constants.SPORTS_UNITS_METRIC;
 import static com.getpebble.android.kit.Constants.SPORTS_UUID;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private PebbleKit.PebbleDataReceiver mReceiver;
 
     @Override

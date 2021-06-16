@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 final BUILD_DATE = new Date().format('yyyyMMdd')
 
 android {
     compileSdkVersion    rootProject.ext.compile_sdk_version
+    buildFeatures.viewBinding true
 
     defaultConfig {
         minSdkVersion    rootProject.ext.min_sdk_version
@@ -12,10 +14,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner Libs.x_test_runner
-    }
-
-    dataBinding {
-        enabled = true
     }
 
     buildTypes {
@@ -36,6 +34,7 @@ android {
 }
 
 dependencies {
-    implementation Libs.support_appcompat_v7
-    implementation Libs.support_design
+    implementation Libs.material
+    implementation Libs.x_appcompat
+    implementation Libs.x_coordinator_layout
 }

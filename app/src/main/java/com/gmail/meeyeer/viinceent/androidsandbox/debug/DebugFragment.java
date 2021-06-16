@@ -1,7 +1,5 @@
 package com.gmail.meeyeer.viinceent.androidsandbox.debug;
 
-
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.gmail.meeyeer.viinceent.androidsandbox.R;
 
@@ -30,12 +30,7 @@ public class DebugFragment extends Fragment {
 //            }
 //        });
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Click detected on DebugFragment");
-            }
-        });
+        view.setOnClickListener(v -> Log.d(TAG, "Click detected on DebugFragment"));
 
 //        view.setOnDragListener(new View.OnDragListener() {
 //            @Override

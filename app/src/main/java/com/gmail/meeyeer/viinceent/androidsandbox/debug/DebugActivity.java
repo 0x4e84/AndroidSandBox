@@ -4,18 +4,19 @@ package com.gmail.meeyeer.viinceent.androidsandbox.debug;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gmail.meeyeer.viinceent.androidsandbox.BuildConfig;
 import com.gmail.meeyeer.viinceent.androidsandbox.PreferencesFragment;
 import com.gmail.meeyeer.viinceent.androidsandbox.R;
 import com.gmail.meeyeer.viinceent.androidsandbox.SettingsActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 public class DebugActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,11 +28,11 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_debug);
 
         Button testButton;
-        testButton = (Button) findViewById(R.id.button_debug);
+        testButton = findViewById(R.id.button_debug);
         testButton.setOnClickListener(this);
 
         Button snackButton;
-        snackButton = (Button) findViewById(R.id.button_snackbar);
+        snackButton = findViewById(R.id.button_snackbar);
         snackButton.setOnClickListener(this);
     }
 
