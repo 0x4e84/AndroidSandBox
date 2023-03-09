@@ -1,0 +1,54 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What happens as a result of the error - Did the app crash? Did the recording stop? Was the connection lost? Is the data missing or not corresponding to expectations?
+      value: Describe the issue here
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Steps that triggered the issue
+      description: Which steps were performed just before the error occurred?
+      value:  |
+        1.
+        2.
+        3.
+        ...
+      render: bash
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Can the issue be reproduced consistently following a series of steps or do they occur only intermittently
+      render: bash
+  - type: textarea
+    id: app
+    attributes:
+      label: App
+      description: What app are you seeing the problem on?
+  - type: textarea
+    id: version-app
+    attributes:
+      label: Version
+      description: Which app version are you using?
+  - type: textarea
+    id: version-android
+    attributes:
+      label: Version
+      description: Which Android version are you using?
+  - type: input
+      id: reporter
+      attributes:
+        label: Reporter Details
+        description: Name or email
+        render: bash
+  - type: textarea
+    id: notes
+    attributes:
+      label: Further comments
+      description: Notes about the testing environment, testing conditions, etc. in case they could be relevant
+      render: bash
